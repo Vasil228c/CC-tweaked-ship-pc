@@ -22,6 +22,10 @@ function methods.m.getPlayerData(name,prop)
         return "Player or data not found"
     end
 end
+function methods.m.autopilot(x,y,z)
+    os.run({}, "autopilot.lua", x, y, z)
+    
+end
 function methods.m.getValFromEvDetector(value)
     return tostring(methods.environmentDetector[value]())
 end
@@ -92,6 +96,21 @@ methods.tools = {
                 type = "object", 
                 properties = {
                     blockid = { type = "string", description = "The ID of the block to find" }
+                }
+            }
+        }
+    },
+    {
+        type = "function",
+        ["function"] = {
+            name = "autopilot",
+            description = "Starts the autopilot to the specified coordinates. Usage: autopilot({x: 100, y: 64, z: 100})",
+            parameters = { 
+                type = "object", 
+                properties = {
+                    x = { type = "number", description = "X coordinate" },
+                    y = { type = "number", description = "Y coordinate" },
+                    z = { type = "number", description = "Z coordinate" }
                 }
             }
         }
