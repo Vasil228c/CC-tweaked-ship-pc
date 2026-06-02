@@ -128,3 +128,5 @@ local function chatListener()
 end
 methods:init(owners)
 chatListener()
+
+print("AI started")
