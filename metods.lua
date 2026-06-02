@@ -25,6 +25,17 @@ end
 function methods.m.getValFromEvDetector(value)
     return tostring(methods.environmentDetector[value]())
 end
+function methods.m.findBlockInChunk(blockid)
+    local res = {
+
+    }
+    for block in methods.modem.call(methods.geoScanner, "scan") do
+        if block.id == blockid then
+            table.insert(res, block)
+        end
+    end
+    return res
+end
 methods.tools = {
     {
         type = "function",
@@ -68,6 +79,19 @@ methods.tools = {
                 properties = {
                     value = { type = "string", description = "The value to retrieve",
                     enums = {"getBiome", "getSkyLightLevel", "getDimension", "getMoonId", "isRaining", "isThunder", "isSlimeChunk"} }
+                }
+            }
+        }
+    },
+    {
+        type = "function",
+        ["function"] = {
+            name = "findBlockInChunk",
+            description = "Scans the current chunk for a specific block and returns their coordinates. Usage: findBlockInChunk({blockid: 'minecraft:block'})",
+            parameters = { 
+                type = "object", 
+                properties = {
+                    blockid = { type = "string", description = "The ID of the block to find" }
                 }
             }
         }
