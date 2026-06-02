@@ -117,8 +117,8 @@ local function chatListener()
             if reply then
                 chat_box.sendMessageToPlayer(reply,username, name)
             end
-
-            else
+        
+        else
             
             print("not " .. username.." not "..name)
         end
@@ -126,7 +126,7 @@ local function chatListener()
         
     end
 end
-methods:init(owners)
+methods.init(owners)
 chatListener()
 
 print("AI started")

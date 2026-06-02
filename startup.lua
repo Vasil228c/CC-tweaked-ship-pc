@@ -1,1 +1,1 @@
-os.run("ai.lua")
+os.run("background ai.lua")
