@@ -23,7 +23,7 @@ function methods.m.getPlayerData(name,prop)
     end
 end
 function methods.m.getValFromEvDetector(value)
-    return methods.environmentDetector[value]()
+    return tostring(methods.environmentDetector[value]())
 end
 methods.tools = {
     {
