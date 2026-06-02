@@ -1,0 +1,1 @@
+os.run("ai.lua")
