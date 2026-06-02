@@ -22,6 +22,9 @@ function methods.m.getPlayerData(name,prop)
         return "Player or data not found"
     end
 end
+function methods.m.getValFromEvDetector(value)
+    return methods.environmentDetector[value]()
+end
 methods.tools = {
     {
         type = "function",
@@ -39,7 +42,6 @@ methods.tools = {
             parameters = { type = "object", properties = {} }
         }
     },
-
     {
         type = "function",
         ["function"] = {
@@ -55,25 +57,39 @@ methods.tools = {
                 
             }
         }
-    }       
+    },
+    {
+        type = "function",
+        ["function"] = {
+            name = "getValFromEvDetector",
+            description = "Returns a value from the environment detector.",
+            parameters = { 
+                type = "object", 
+                properties = {
+                    value = { type = "string", description = "The value to retrieve",
+                    enums = {"getBiome", "getSkyLightLevel", "getDimension", "getMoonId", "isRaining", "isThunder", "isSlimeChunk"} }
+                }
+            }
+        }
+    }
 }
 
-function methods:init(owners)
-    self.owners = owners
+function methods.init(owners)
+    methods.owners = owners
     
-    self.modem = peripheral.find("modem")
+    methods.modem = peripheral.find("modem")
     
-    local modem = self.modem
+    local modem = methods.modem
     
     for i,name in pairs(modem.getNamesRemote()) do
         if (modem.getTypeRemote(name) == "player_detector") then
-            self.playerDetector = name
+            methods.playerDetector = name
         elseif (modem.getTypeRemote(name) == "environment_detector") then
-            self.environmentDetector = name
+            methods.environmentDetector = name
         elseif (modem.getTypeRemote(name) == "geo_scanner") then
-            self.geoScanner = name
+            methods.geoScanner = name
         elseif (modem.getTypeRemote(name) == "nbt_storage") then
-            self.nbtStorage = name
+            methods.nbtStorage = name
         end
     end
 
