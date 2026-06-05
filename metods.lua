@@ -117,7 +117,7 @@ methods.tools = {
     }
 }
 
-function methods.init(owners)
+function methods:init(owners)
     methods.owners = owners
     
     methods.modem = peripheral.find("modem")
@@ -139,3 +139,5 @@ function methods.init(owners)
 
 
 end
+
+return methods

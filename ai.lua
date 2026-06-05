@@ -126,7 +126,7 @@ local function chatListener()
         
     end
 end
-methods.init(owners)
+methods:init(owners)
 chatListener()
 
 print("AI started")
